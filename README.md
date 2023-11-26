@@ -1,6 +1,6 @@
-# OTP Form Input
+# formik-otp-input
 
-This package extends the [Formik]() library with a one-time-password (OTP) input field.
+This package extends the [formik]() library with a one-time-password (OTP) input field.
 
 ## Installation
 
