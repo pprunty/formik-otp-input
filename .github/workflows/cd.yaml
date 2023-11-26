@@ -1,0 +1,31 @@
+name: formik-otp-input CD
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout Repository 🛒
+
+      - name: Setup Node.js (v16) 🚀
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16'
+
+      - name: Install Dependencies 📦
+        run: npm install
+
+      - name: Build Package 🏗️
+        run: npm run build
+
+      - name: Publish to npm 🚀
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

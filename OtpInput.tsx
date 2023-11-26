@@ -25,16 +25,6 @@ const Input = styled.input`
   }
 `;
 
-const Button = styled.button`
-  margin-top: 20px;
-  padding: 10px 15px;
-  background-color: #EC6247;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-`;
-
 interface OtpInputProps {
     length: number;
     value: string;

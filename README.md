@@ -1,21 +1,21 @@
-# React Native Snap Scroll
+# OTP Form Input
 
-This package provides a React Native component that implements TikTok style vertical snap scrolling.
+This package extends the [Formik]() library with a one-time-password (OTP) input field.
 
 ## Installation
 
 Install the package by running:
 
 ```sh
-npm install react-native-snap-scroll
+npm install formik-otp-input
 ```
 
 ## Usage
 
-Import `SnapScrollView` and `SnapScrollViewItem` from the package and use them in your component.
+Import `OtpInput`  from the package and use them in your component.
 
 ```jsx
-import {SnapScrollView, SnapScrollViewItem} from 'react-native-snap-scroll';
+import {OtpInput} from 'formik-otp-input';
 
 // ...
 
