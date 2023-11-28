@@ -1,4 +1,4 @@
-# formik-otp-input 🎫
+# formik-otp-input 🪪
 
 An extension to the [formik]() library, `formik-otp-input` enables OTP (one-time-password)
 input for React applications with a configurable number of input values for the password, as well as user configurable
@@ -156,6 +156,6 @@ export default MultiStepForm;
 ## Contributors ✨
 
 
-## License 🪪
+## License 🎫
 
 This project is licensed under the MIT License.
