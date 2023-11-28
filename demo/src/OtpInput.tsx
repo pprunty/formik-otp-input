@@ -43,8 +43,6 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   max-width: inherit;
-  padding-left: 4px;
-  padding-right: 4px;
   //align-items: center; // Optional, for vertical centering
   // Additional style for space between third and fourth input
   .extra-space {
@@ -57,7 +55,7 @@ const Input = styled.input`
   height: 38px; // Larger height for visibility
   margin: 0 6px; // Space between input boxes
   text-align: center;
-  font-size: 22px;
+  font-size: 20px;
   font-family: Monospaced, monospace;
   border: 1.2px solid #ccc; // Thicker border for visibility
   border-radius: 9px; // Rounded corners
@@ -90,8 +88,8 @@ const Input = styled.input`
 
   // Responsive design adjustments
   @media (max-width: 600px) {
-    width: 35px;
-    height: 48px;
+    width: 30px;
+    height: 42px;
   }
 `;
 
