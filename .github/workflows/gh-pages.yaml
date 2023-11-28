@@ -22,10 +22,6 @@ jobs:
       - name: Install and Build 🔧
         run: yarn && yarn demo:deploy
 
-      - name: Set Git User
-        run: |
-          git config --global user.name "Patrick Prunty"
-          git config --global user.email "pprunty@tcd.ie"
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2
