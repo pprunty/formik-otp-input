@@ -53,7 +53,7 @@ const Container = styled.div`
 const Input = styled.input`
   width: 34px; // Larger width for easier tapping
   height: 38px; // Larger height for visibility
-  margin: 0 8px; // Space between input boxes
+  margin: 0 6px; // Space between input boxes
   text-align: center;
   font-size: 20px;
   font-family: Monospaced, monospace;
@@ -89,7 +89,7 @@ const Input = styled.input`
   // Responsive design adjustments
   @media (max-width: 600px) {
     width: 28px;
-    height: 34px;
+    height: 36px;
   }
 `;
 
