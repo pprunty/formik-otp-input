@@ -8,6 +8,47 @@ import {
 } from "./AuthFormStyles";
 import {useFormik} from "formik";
 import OtpInput from './OtpInput';
+import styled from "styled-components";
+
+
+// OTP settings container
+const OTPSettingsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+`;
+
+// Individual setting
+const OTPSetting = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+
+// Styled select and checkbox
+const Select = styled.select`
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+`;
+
+const Checkbox = styled.input.attrs({type: 'checkbox'})`
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+`;
+
+// Styled label
+const Label = styled.label`
+  font-size: 14px;
+  color: #333;
+`;
 
 function App() {
 
@@ -16,7 +57,6 @@ function App() {
         inputType: "numeric",
         autoFocus: true,
         autoSubmit: true,
-        keyHandling: true
     });
 
     const [formKey, setFormKey] = useState(0);
@@ -42,73 +82,68 @@ function App() {
     return (
         <AuthFormContainer>
             {/* UI for selecting OTP Input properties */}
-            <div style={{display: "flex", gap: "5px"}}>
+            <OTPSettingsContainer>
                 {/* Dropdown for OTP Length */}
-                <label>
-                    OTP Length:
-                    <select
-                        value={otpProps.length}
-                        onChange={(e) => handlePropChange('length', parseInt(e.target.value))}
-                    >
-                        <option value={4}>4</option>
-                        <option value={6}>6</option>
-                        {/* Add more options as needed */}
-                    </select>
-                </label>
+                <OTPSetting>
+                    <Label>
+                        OTP Length:
+                        <Select
+                            value={otpProps.length}
+                            onChange={(e) => handlePropChange('length', parseInt(e.target.value))}
+                        >
+                            <option value={4}>4</option>
+                            <option value={6}>6</option>
+                            {/* Add more options as needed */}
+                        </Select>
+                    </Label>
+                </OTPSetting>
 
                 {/* Dropdown for Input Type */}
-                <label>
-                    Input Type:
-                    <select
-                        value={otpProps.inputType}
-                        onChange={(e) => handlePropChange('inputType', e.target.value)}
-                    >
-                        <option value="numeric">Numeric</option>
-                        <option value="alphabetic">Alphabetic</option>
-                        <option value="alphanumeric">Alphanumeric</option>
-                    </select>
-                </label>
+                <OTPSetting>
+                    <Label>
+                        Input Type:
+                        <Select
+                            value={otpProps.inputType}
+                            onChange={(e) => handlePropChange('inputType', e.target.value)}
+                        >
+                            <option value="numeric">Numeric</option>
+                            <option value="alphabetic">Alphabetic</option>
+                            <option value="alphanumeric">Alphanumeric</option>
+                        </Select>
+                    </Label>
+                </OTPSetting>
 
                 {/* Checkboxes for Other Properties */}
-                <label>
-                    <input
-                        type="checkbox"
+                {/* Auto Focus */}
+                <OTPSetting>
+                    <Checkbox
                         checked={otpProps.autoFocus}
                         onChange={(e) => handlePropChange('autoFocus', e.target.checked)}
                     />
-                    Auto Focus
-                </label>
+                    <Label>Auto Focus</Label>
+                </OTPSetting>
 
-                <label>
-                    <input
-                        type="checkbox"
+                {/* Auto Submit */}
+                <OTPSetting>
+                    <Checkbox
                         checked={otpProps.autoSubmit}
                         onChange={(e) => handlePropChange('autoSubmit', e.target.checked)}
                     />
-                    Auto Submit
-                </label>
-
-                <label>
-                    <input
-                        type="checkbox"
-                        checked={otpProps.keyHandling}
-                        onChange={(e) => handlePropChange('keyHandling', e.target.checked)}
-                    />
-                    Key Handling
-                </label>
-            </div>
+                    <Label>Auto Submit</Label>
+                </OTPSetting>
+            </OTPSettingsContainer>
             <AuthFormContent>
                 <AuthFormTitle>Log in</AuthFormTitle>
                 <AuthButtonSeparator/>
                 <AuthForm onSubmit={formik.handleSubmit} key={formKey}>
                     <>
-                        <OtpFormLabel htmlFor="otp">[Example Prompt] We just sent you a temporary login code. Please check your
+                        <OtpFormLabel htmlFor="otp">[Example Prompt] We just sent you a temporary login code. Please
+                            check your
                             inbox.</OtpFormLabel>
                         <OtpInput
                             length={otpProps.length}
                             autoFocus={otpProps.autoFocus}
                             autoSubmit={otpProps.autoSubmit}
-                            keyHandling={otpProps.keyHandling}
                             inputType={otpProps.inputType}
                             onBlur={formik.handleBlur}
                             value={formik.values.otp}

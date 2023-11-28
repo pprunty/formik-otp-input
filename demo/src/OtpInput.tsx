@@ -103,10 +103,8 @@ interface OtpInputProps {
     setFieldTouched: (field: string, isTouched: boolean, shouldValidate?: boolean) => void; // Add this line
     autoFocus?: boolean; // Add autoFocus prop
     autoSubmit?: boolean; // Add autoSubmit prop
-    keyHandling?: boolean; // Add keyHandling prop
     inputType?: string | 'alphanumeric' | 'numeric' | 'alphabetic'; // Add inputType prop
     onBlur: (e: React.FocusEvent<any>) => void;
-
 }
 
 const OtpInput: React.FC<OtpInputProps> = ({
@@ -120,7 +118,6 @@ const OtpInput: React.FC<OtpInputProps> = ({
                                                inputType = 'numeric',
                                                autoFocus = true,
                                                autoSubmit = true,
-                                               keyHandling = true
                                            }) => {
     const [localOtp, setLocalOtp] = useState<string[]>(new Array(length).fill(''));
     const inputRefs = useRef<(HTMLInputElement | null)[]>(new Array(length).fill(null));
@@ -182,31 +179,30 @@ const OtpInput: React.FC<OtpInputProps> = ({
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
-        if (keyHandling) {
-            if (e.key === "Backspace") {
-                e.preventDefault();
-                if (localOtp[index] === '' && index > 0) {
-                    const newOtp = [...localOtp];
-                    newOtp[index - 1] = '';
-                    setLocalOtp(newOtp);
-                    onChange({
-                        target: {
-                            name: "otp",
-                            value: newOtp.join('')
-                        }
-                    } as React.ChangeEvent<HTMLInputElement>);
-                    inputRefs.current[index - 1]?.focus();
-                } else {
-                    const newOtp = [...localOtp];
-                    newOtp[index] = '';
-                    setLocalOtp(newOtp);
-                }
-            } else if (e.key === "ArrowLeft" && index > 0) {
+        if (e.key === "Backspace") {
+            e.preventDefault();
+            if (localOtp[index] === '' && index > 0) {
+                const newOtp = [...localOtp];
+                newOtp[index - 1] = '';
+                setLocalOtp(newOtp);
+                onChange({
+                    target: {
+                        name: "otp",
+                        value: newOtp.join('')
+                    }
+                } as React.ChangeEvent<HTMLInputElement>);
                 inputRefs.current[index - 1]?.focus();
-            } else if (e.key === "ArrowRight" && index < length - 1) {
-                inputRefs.current[index + 1]?.focus();
+            } else {
+                const newOtp = [...localOtp];
+                newOtp[index] = '';
+                setLocalOtp(newOtp);
             }
+        } else if (e.key === "ArrowLeft" && index > 0) {
+            inputRefs.current[index - 1]?.focus();
+        } else if (e.key === "ArrowRight" && index < length - 1) {
+            inputRefs.current[index + 1]?.focus();
         }
+
     };
 
 
@@ -253,7 +249,7 @@ const OtpInput: React.FC<OtpInputProps> = ({
                         value={data}
                         ref={el => inputRefs.current[index] = el}
                         onChange={e => handleChange(e, index)}
-                        onKeyDown={e => keyHandling && handleKeyDown(e, index)}
+                        onKeyDown={e => handleKeyDown(e, index)}
                         onKeyPress={e => handleKeyPress(e, index)}
                         onBlur={onBlur} // Use the onBlur prop
                         autoComplete={autoComplete}
