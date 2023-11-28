@@ -28,5 +28,5 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GH_PAGES }}
           BRANCH: gh-pages
-          FOLDER: demo/dist
+          FOLDER: demo/build
           CLEAN: true

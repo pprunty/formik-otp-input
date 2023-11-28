@@ -12,12 +12,10 @@ demo/package-lock.json
 demo/yarn.lock
 demo/.pnp
 demo.pnp.js
+demo/build
 
 # testing
 demo/coverage
-
-# production
-demo/build
 
 # misc
 demo/.DS_Store
