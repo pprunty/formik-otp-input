@@ -1,18 +1,28 @@
 # formik-otp-input 🎫
 
-This package extends the [formik]() library with a one-time-password (OTP) input field.
+An extension to the [formik]() library, `formik-otp-input` enables OTP (one-time-password)
+input for React applications with a configurable number of input values for the password, as well as user configurable
+automation for focus, submission and key change handling.
 
 ## Installation 💿
 
 Install the package by running:
 
+### npm
+
 ```sh
 npm install formik-otp-input
 ```
 
+### yarn
+
+```sh
+yarn install formik-otp-input
+```
+
 ## Demo 🖥️
 
-You can preview a live demo of this component by following this link
+A live demo of this component is hosted on GitHub pages and can be previewed by following [this link]().
 
 ## Usage 🔨
 
