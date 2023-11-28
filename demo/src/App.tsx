@@ -4,12 +4,10 @@ import {
     AuthFormContainer,
     AuthFormContent,
     AuthFormTitle, ErrorMessage, OtpFormLabel,
-    StyledLink,
     SubmitButton,
-    TermsAndConditionsText
 } from "./AuthFormStyles";
 import {useFormik} from "formik";
-import OtpInput, {OtpInputProps} from './OtpInput';
+import OtpInput from './OtpInput';
 
 function App() {
 
