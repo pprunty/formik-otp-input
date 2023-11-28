@@ -32,21 +32,23 @@ const OTPSetting = styled.div`
 
 // Styled select and checkbox
 const Select = styled.select`
-  padding: 5px;
+  padding: 10px;
   border: 1px solid #ccc;
+  font-size: 16px;
   border-radius: 4px;
   background-color: white;
+  margin-left: 6px;
 `;
 
 const Checkbox = styled.input.attrs({type: 'checkbox'})`
-  padding: 5px;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 `;
 
 // Styled label
 const Label = styled.label`
-  font-size: 14px;
+  font-size: 16px;
   color: #333;
 `;
 
