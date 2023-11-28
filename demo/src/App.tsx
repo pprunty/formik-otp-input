@@ -88,7 +88,7 @@ function App() {
                 {/* Dropdown for OTP Length */}
                 <OTPSetting>
                     <Label>
-                        OTP Length:
+                        One-Time-Password (OTP) code length:
                         <Select
                             value={otpProps.length}
                             onChange={(e) => handlePropChange('length', parseInt(e.target.value))}
