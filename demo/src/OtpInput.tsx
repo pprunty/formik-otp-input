@@ -43,23 +43,52 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   //align-items: center; // Optional, for vertical centering
+  // Additional style for space between third and fourth input
+  .extra-space {
+    margin-right: 15px; // Adjust the space as needed
+  }
 `;
 
-// Modify the Input styled component to remove cursor
 const Input = styled.input`
-  width: 35px;
-  height: 35px;
-  margin: 0 4px;
+  width: 30px; // Larger width for easier tapping
+  height: 33px; // Larger height for visibility
+  margin: 0 8px; // Space between input boxes
   text-align: center;
   font-size: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  caret-color: transparent; // Remove cursor
+  font-family: Monospaced, monospace;
+  border: 1.5px solid #ccc; // Thicker border for visibility
+  border-radius: 6px; // Rounded corners
+  //caret-color: blue; // Visible caret color
+  caret-color: transparent;
+
+  &[type='number'] {
+    -moz-appearance: textfield; // For Firefox
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
 
   &:focus {
-    background-color: #ffffff; // Example: light blue background
-    border-color: #ff7418; // Example: blue border
-    // You can add other styles like box-shadow, etc.
+    border-color: #ff8000; // Change border color on focus
+    outline: none; // Remove default outline
+    box-shadow: 0 0 5px rgba(218, 143, 82, 0.3); // Add focus shadow
+  }
+
+  &::placeholder {
+    color: #ced4da;
+  }
+
+  // Styles for error feedback
+  &.error {
+    border-color: #dc3545;
+  }
+
+  // Responsive design adjustments
+  @media (max-width: 600px) {
+    width: 26px;
+    height: 29px;
   }
 `;
 
@@ -195,21 +224,42 @@ const OtpInput: React.FC<OtpInputProps> = ({
         }
     };
 
+    const getInputType = (inputType: string): string => {
+        switch (inputType) {
+            case 'alphanumeric':
+            case 'alphabetic':
+                return 'text';
+            case 'numeric':
+                return 'number';
+            default:
+                return 'text';
+        }
+    };
+
+    const isEvenLength = length % 2 === 0;
+    const midpointIndex = length % 2 === 0 ? (length / 2) - 1 : null;
+
+
     return (
         <Container>
             {localOtp.map((data, index) => (
-                <Input
-                    name="otp"
-                    key={index}
-                    maxLength={1}
-                    value={data}
-                    ref={el => inputRefs.current[index] = el}
-                    onChange={e => handleChange(e, index)}
-                    onKeyDown={e => keyHandling && handleKeyDown(e, index)}
-                    onKeyPress={e => handleKeyPress(e, index)}
-                    onBlur={onBlur} // Use the onBlur prop
-                    autoComplete={autoComplete}
-                />
+                <>
+                    <Input
+                        name="otp"
+                        type={getInputType(inputType)} // Set the type dynamically
+                        key={index}
+                        maxLength={1}
+                        value={data}
+                        ref={el => inputRefs.current[index] = el}
+                        onChange={e => handleChange(e, index)}
+                        onKeyDown={e => keyHandling && handleKeyDown(e, index)}
+                        onKeyPress={e => handleKeyPress(e, index)}
+                        onBlur={onBlur} // Use the onBlur prop
+                        autoComplete={autoComplete}
+                        className={isEvenLength && index === midpointIndex ? 'extra-space' : ''}
+                    />
+                    {isEvenLength && index === midpointIndex && <div className="spacer"></div>}
+                </>
             ))}
         </Container>
     );

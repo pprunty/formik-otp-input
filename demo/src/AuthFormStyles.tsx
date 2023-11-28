@@ -14,13 +14,13 @@ export const OtpFormContainer = styled.div`
 `;
 
 export const AuthForm = styled.form`
-  width: 320px;
+  width: 350px;
   display: flex;
   flex-direction: column;
 `;
 
 export const AuthFormContent = styled.div`
-    width: 320px;
+    width: 350px;
   display: flex;
   flex-direction: column;
 `;
