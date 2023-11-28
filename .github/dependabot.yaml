@@ -9,3 +9,4 @@ updates:
       - "dependencies"
     open-pull-requests-limit: 3
     versioning-strategy: "auto"
+
