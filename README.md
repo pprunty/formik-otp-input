@@ -13,7 +13,13 @@ Its integration is versatile, making it suitable for a variety of applications, 
 3. Two-factor authentication (2FA) for added security.
 4. Secure online payment and transaction confirmation.
 5. User registration and login procedures for web and mobile applications.
-6. Quick response actions in interactive customer service tools
+6. Quick response actions in interactive customer service tools.
+
+## Demo 🖥️
+
+#### A live demo of this component is hosted on GitHub pages and can be previewed by following [this link]().
+
+#### The source code used for the demo can be found [here](https://github.com/pprunty/formik-otp-input/blob/main/demo/src/App.tsx).
 
 ## Installation 💿
 
@@ -30,12 +36,6 @@ npm install formik-otp-input
 ```sh
 yarn install formik-otp-input
 ```
-
-## Demo 🖥️
-
-A live demo of this component is hosted on GitHub pages and can be previewed by following [this link]().
-
-The source code used for the demo can be found [here](https://github.com/pprunty/formik-otp-input/blob/main/demo/src/App.tsx).
 
 ## Usage 🔨
 
