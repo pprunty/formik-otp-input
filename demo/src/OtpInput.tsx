@@ -88,8 +88,8 @@ const Input = styled.input`
 
   // Responsive design adjustments
   @media (max-width: 600px) {
-    width: 26px;
-    height: 29px;
+    width: 28px;
+    height: 34px;
   }
 `;
 
