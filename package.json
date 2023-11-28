@@ -10,7 +10,7 @@
     "format": "prettier --write \"**/*.{html,css,js,jsx}\"",
     "lint": "eslint 'src/**/*.{js,jsx}' --quiet",
     "lint:fix": "eslint 'src/**/*.{js,jsx}' --fix",
-    "demo:build": "cd demo && yarn && yarn build"
+    "demo:deploy": "cd demo && yarn install && yarn build && gh-pages -d build"
   },
   "author": "Patrick Prunty",
   "license": "MIT",

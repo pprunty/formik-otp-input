@@ -1,10 +1,9 @@
 name: gh-pages site ⛬
 on:
   workflow_dispatch:
-    # Can put this back later if required
-#  push:
-#    branches:
-#      - main
+  push:
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
@@ -21,7 +20,7 @@ jobs:
           node-version: 16.14.2
 
       - name: Install and Build 🔧
-        run: yarn && yarn demo:build
+        run: yarn && yarn demo:deploy
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2
