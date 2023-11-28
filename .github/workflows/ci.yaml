@@ -1,4 +1,4 @@
-name: formik-otp-input CI
+name: formik-otp-input CI 💎
 
 on:
   pull_request:
@@ -20,7 +20,7 @@ jobs:
           node-version: '16.x'
 
       - name: Install Dependencies 🧹
-        run: npm install
+        run: yarn install
 
       - name: Cache node modules
         uses: actions/cache@v3
@@ -47,7 +47,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Run Tests 🧪
-        run: npm test
+        run: yarn test
 
   lint:
     name: "Linting: Running eslint against application 🧹"
@@ -66,4 +66,4 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Run Linter 🛀🏻
-        run: npm run lint
+        run: yarn run lint

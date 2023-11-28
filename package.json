@@ -2,25 +2,59 @@
   "name": "formik-otp-input",
   "version": "0.1.0",
   "description": "A React component for one-time-password.",
-  "main": "OtpInput.tsx",
+  "main": "lib/index.js",
+  "module": "lib/index.esm.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ."
+    "build": "rollup -c",
+    "format": "prettier --write \"**/*.{html,css,js,jsx}\"",
+    "lint": "eslint 'src/**/*.{js,jsx}' --quiet",
+    "lint:fix": "eslint 'src/**/*.{js,jsx}' --fix",
+    "demo:build": "cd demo && yarn && yarn build"
   },
-  "author": "",
+  "author": "Patrick Prunty",
   "license": "MIT",
   "dependencies": {
     "react": "^18.2.0",
-    "styled-components": "^6.1.0"
+    "styled-components": "^6.1.0",
+    "tslib": "^2.6.2"
   },
+  "keywords": [
+    "otp",
+    "input",
+    "formik",
+    "code",
+    "passcode",
+    "component"
+  ],
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@rollup/plugin-typescript": "11.0.0",
+    "@types/react-dom": "18.0.11",
+    "@typescript-eslint/eslint-plugin": "5.55.0",
+    "@typescript-eslint/parser": "5.55.0",
+    "concurrently": "6.2.0",
     "eslint": "^8.54.0",
-    "eslint-config-standard-with-typescript": "^40.0.0",
-    "eslint-plugin-import": "^2.29.0",
-    "eslint-plugin-n": "^16.3.1",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "^7.33.2",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "2.23.3",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-prettier": "3.4.0",
+    "eslint-plugin-react": "7.23.2",
+    "eslint-plugin-react-hooks": "4.2.0",
+    "gh-pages": "3.2.3",
+    "prettier": "2.3.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "rollup": "2.79.1",
+    "rollup-plugin-peer-deps-external": "2.2.4",
+    "styled-components": "^6.1.0",
     "typescript": "^5.3.2"
+  },
+  "homepage": "https://pprunty.github.io/pprunty/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pprunty/formik-otp-input"
+  },
+  "bugs": {
+    "url": "https://github.com/pprunty/formik-otp-input/issues"
   }
 }
