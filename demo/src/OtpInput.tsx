@@ -111,9 +111,8 @@ const OtpInput: React.FC<OtpInputProps> = ({
         if (autoFocus && inputRefs.current[0]) {
             inputRefs.current[0].focus();
             setFieldTouched("otp", true);
-
         }
-    }, [autoFocus]);
+    }, [autoFocus, setFieldTouched]); // Include setFieldTouched in the dependency array
 
     const handleChange = async (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
         if (!hasUserStartedTyping) {
