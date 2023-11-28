@@ -102,7 +102,7 @@ function App() {
                 <AuthButtonSeparator/>
                 <AuthForm onSubmit={formik.handleSubmit} key={formKey}>
                     <>
-                        <OtpFormLabel htmlFor="otp">We just sent you a temporary login code. Please check your
+                        <OtpFormLabel htmlFor="otp">[Example Prompt] We just sent you a temporary login code. Please check your
                             inbox.</OtpFormLabel>
                         <OtpInput
                             length={otpProps.length}

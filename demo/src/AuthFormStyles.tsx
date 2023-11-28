@@ -47,7 +47,7 @@ export const OtpFormLabel = styled.label`
   margin-top: 10px;
   display: block;
   margin-bottom: 10px;
-  font-size: 14px;
+  font-size: 16px;
   justify-content: center;
   cursor: text; // Update cursor style based on emailSubmitted state
   //width: 80%;

@@ -51,13 +51,13 @@ const Container = styled.div`
 
 const Input = styled.input`
   width: 30px; // Larger width for easier tapping
-  height: 33px; // Larger height for visibility
+  height: 34px; // Larger height for visibility
   margin: 0 8px; // Space between input boxes
   text-align: center;
   font-size: 20px;
   font-family: Monospaced, monospace;
   border: 1.5px solid #ccc; // Thicker border for visibility
-  border-radius: 6px; // Rounded corners
+  border-radius: 9px; // Rounded corners
   //caret-color: blue; // Visible caret color
   caret-color: transparent;
 
@@ -257,6 +257,9 @@ const OtpInput: React.FC<OtpInputProps> = ({
                         onBlur={onBlur} // Use the onBlur prop
                         autoComplete={autoComplete}
                         className={isEvenLength && index === midpointIndex ? 'extra-space' : ''}
+                        autoCorrect="off"
+                        autoCapitalize="off"
+                        spellCheck="false"
                     />
                     {isEvenLength && index === midpointIndex && <div className="spacer"></div>}
                 </>
