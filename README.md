@@ -1,3 +1,11 @@
+[![npm version](https://badge.fury.io/js/formik-otp-input.svg)](https://badge.fury.io/js/react-otp-input) 
+[![npm](https://img.shields.io/npm/dm/formik-otp-input.svg?logo=npm)](https://www.npmjs.com/package/react-otp-input) 
+[![npm](https://img.shields.io/bundlephobia/minzip/formik-otp-input)](https://www.npmjs.com/package/react-otp-input)
+![GitHub Contributors](https://img.shields.io/github/contributors/pprunty/formik-otp-input.svg)
+[//]: # (![License]&#40;https://img.shields.io/npm/l/motormongo.svg&#41;)
+
+Author: [Patrick Prunty](https://pprunty.github.io/pprunty/).
+
 # formik-otp-input 🪪
 
 `formik-otp-input` is an enhancement to the [formik](https://github.com/jaredpalmer/formik) library, 
@@ -165,10 +173,6 @@ const MultiStepForm = () => {
 export default MultiStepForm;
 
 ```
-
-
-## Contributors ✨
-
 
 ## License 🎫
 
