@@ -119,21 +119,3 @@ export const AuthButtonSeparator = styled.div`
   width: 100%; // This will ensure the separator stretches across the container
 `;
 
-export const TermsAndConditionsText = styled.div`
-  margin-top: 80px;
-  margin-bottom: 40px;
-  max-width: 480px;
-  font-size: 12px;
-  color: rgba(55, 53, 47, 0.5);
-  text-align: center;
-`;
-
-export const StyledLink = styled.a`
-  color: inherit; // Choose your desired link color
-  text-decoration: underline; // Underline on hover for better user experience
-
-  &:hover {
-    text-decoration: underline; // Underline on hover for better user experience
-    color: #ff7300; // Darker color on hover
-  }
-`;

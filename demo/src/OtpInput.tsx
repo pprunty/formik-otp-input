@@ -63,7 +63,7 @@ const Input = styled.input`
   }
 `;
 
-export interface OtpInputProps {
+interface OtpInputProps {
     length: number;
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
