@@ -70,7 +70,7 @@ interface OtpInputProps {
     onFullFill: () => void;
     autoComplete?: string; // Add the autoComplete prop
     setFieldError: (field: string, message: string | undefined) => void; // Add this line
-    setFieldTouched: (field: string, isTouched: boolean, shouldValidate?: boolean) => void; // Add this line
+    setFieldTouched?: (field: string, isTouched: boolean, shouldValidate?: boolean) => void; // Add this line
     autoFocus?: boolean; // Add autoFocus prop
     autoSubmit?: boolean; // Add autoSubmit prop
     keyHandling?: boolean; // Add keyHandling prop
