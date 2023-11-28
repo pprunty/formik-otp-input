@@ -1,8 +1,19 @@
 # formik-otp-input 🪪
 
-An extension to the [formik](https://github.com/jaredpalmer/formik) library, `formik-otp-input` enables OTP (one-time-password)
-input for React applications with a configurable number of input values for the password, as well as user configurable
-automation for focus, submission and key change handling.
+`formik-otp-input` is an enhancement to the [formik](https://github.com/jaredpalmer/formik) library, 
+designed specifically for React applications. This extension introduces a specialized OTP (one-time-password) input
+feature. It offers a customizable input field count for the password, along with user-defined options for automating 
+focus, submission, and key change events. Additionally, this extension supports autofill suggestions on mobile devices, which may vary based on the user's mobile or email service provider."
+
+The inspiration for this project came in part from the smooth checkout process experienced with [Stripe/Link payments](https://stripe.com/docs/payments/link).
+Its integration is versatile, making it suitable for a variety of applications, such as:
+
+1. Verification processes via email or mobile.
+2. Authentication workflows through email/SMS or passwordless systems.
+3. Two-factor authentication (2FA) for added security.
+4. Secure online payment and transaction confirmation.
+5. User registration and login procedures for web and mobile applications.
+6. Quick response actions in interactive customer service tools
 
 ## Installation 💿
 
@@ -23,6 +34,8 @@ yarn install formik-otp-input
 ## Demo 🖥️
 
 A live demo of this component is hosted on GitHub pages and can be previewed by following [this link]().
+
+The source code used for the demo can be found [here](https://github.com/pprunty/formik-otp-input/blob/main/demo/src/App.tsx).
 
 ## Usage 🔨
 
