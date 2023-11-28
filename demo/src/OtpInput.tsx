@@ -42,6 +42,7 @@ const validateOtp = async (otpValue: string, inputType: string, length: number, 
 const Container = styled.div`
   display: flex;
   justify-content: center;
+  max-width: inherit;
   //align-items: center; // Optional, for vertical centering
   // Additional style for space between third and fourth input
   .extra-space {
@@ -50,13 +51,13 @@ const Container = styled.div`
 `;
 
 const Input = styled.input`
-  width: 30px; // Larger width for easier tapping
-  height: 34px; // Larger height for visibility
+  width: 34px; // Larger width for easier tapping
+  height: 38px; // Larger height for visibility
   margin: 0 8px; // Space between input boxes
   text-align: center;
   font-size: 20px;
   font-family: Monospaced, monospace;
-  border: 1.5px solid #ccc; // Thicker border for visibility
+  border: 1.2px solid #ccc; // Thicker border for visibility
   border-radius: 9px; // Rounded corners
   //caret-color: blue; // Visible caret color
   caret-color: transparent;
@@ -73,7 +74,7 @@ const Input = styled.input`
   &:focus {
     border-color: #ff8000; // Change border color on focus
     outline: none; // Remove default outline
-    box-shadow: 0 0 5px rgba(218, 143, 82, 0.3); // Add focus shadow
+    box-shadow: 0 0 5px rgba(218, 143, 82, 0.2); // Add focus shadow
   }
 
   &::placeholder {

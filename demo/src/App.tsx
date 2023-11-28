@@ -12,7 +12,7 @@ import OtpInput from './OtpInput';
 function App() {
 
     const [otpProps, setOtpProps] = useState({
-        length: 6,
+        length: 4,
         inputType: "numeric",
         autoFocus: true,
         autoSubmit: true,
