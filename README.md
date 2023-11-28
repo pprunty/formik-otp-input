@@ -1,8 +1,8 @@
-# formik-otp-input
+# formik-otp-input 🎫
 
 This package extends the [formik]() library with a one-time-password (OTP) input field.
 
-## Installation
+## Installation 💿
 
 Install the package by running:
 
@@ -10,9 +10,13 @@ Install the package by running:
 npm install formik-otp-input
 ```
 
-## Usage
+## Demo 🖥️
 
-### Basic example
+You can preview a live demo of this component by following this link
+
+## Usage 🔨
+
+### Basic example 
 Import `Index`  from the package and use them in your component.
 
 ```jsx
@@ -142,6 +146,6 @@ export default MultiStepForm;
 ## Contributors ✨
 
 
-## License
+## License 🪪
 
 This project is licensed under the MIT License.
