@@ -1,6 +1,6 @@
 # formik-otp-input 🪪
 
-An extension to the [formik]() library, `formik-otp-input` enables OTP (one-time-password)
+An extension to the [formik](https://github.com/jaredpalmer/formik) library, `formik-otp-input` enables OTP (one-time-password)
 input for React applications with a configurable number of input values for the password, as well as user configurable
 automation for focus, submission and key change handling.
 
@@ -47,7 +47,7 @@ const errorMessage = {
     color: 'red',
     fontSize: '12px',
     marginTop: '15px',
-    marginLeft: '4px',
+    textAlign: 'center',
 }
 
 const SimpleForm = () => {

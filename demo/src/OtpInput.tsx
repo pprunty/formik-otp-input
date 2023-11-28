@@ -1,4 +1,4 @@
-import React, {useState, createRef, ChangeEvent, KeyboardEvent, useEffect, useRef, useMemo} from 'react';
+import React, {useState, useEffect, useRef, useMemo} from 'react';
 import styled from 'styled-components';
 import * as Yup from 'yup';
 
@@ -74,12 +74,11 @@ export interface OtpInputProps {
     autoFocus?: boolean; // Add autoFocus prop
     autoSubmit?: boolean; // Add autoSubmit prop
     keyHandling?: boolean; // Add keyHandling prop
-    inputType?: 'alphanumeric' | 'numeric' | 'alphabetic'; // Add inputType prop
+    inputType?: string | 'alphanumeric' | 'numeric' | 'alphabetic'; // Add inputType prop
     onBlur: (e: React.FocusEvent<any>) => void;
 
 }
 
-// todo: add autoSubmit field, colorHighlight field (optional), autoFocus = True, keyHandling
 const OtpInput: React.FC<OtpInputProps> = ({
                                                length,
                                                onChange,
