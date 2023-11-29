@@ -133,8 +133,8 @@ const Input = styled.input<InputProps>`
 
   // Responsive design adjustments
   @media (max-width: 600px) {
-    width: 30px;
-    height: 42px;
+    width: 26px;
+    height: 40px;
   }
 `;
 
