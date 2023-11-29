@@ -17,7 +17,8 @@ const OTPSettingsContainer = styled.div`
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 20px;
-
+  justify-content: center;
+  
   @media (max-width: 600px) {
     flex-direction: column;
   }
@@ -59,6 +60,10 @@ function App() {
         inputType: "numeric",
         autoFocus: true,
         autoSubmit: true,
+        textColor: '#000000',        // Default text color
+        backgroundColor: '#ffffff',  // Default background color
+        highlightColor: '#ff8000',
+        borderColor: '#ccc'
     });
 
     const [formKey, setFormKey] = useState(0);
@@ -133,10 +138,56 @@ function App() {
                     />
                     <Label>Auto Submit</Label>
                 </OTPSetting>
+                <OTPSetting>
+                    <Label>
+                        Text Color:
+                        <input
+                            type="color"
+                            value={otpProps.textColor}
+                            onChange={(e) => handlePropChange('textColor', e.target.value)}
+                        />
+                    </Label>
+                </OTPSetting>
+
+                {/* Color Picker for Background Color */}
+                <OTPSetting>
+                    <Label>
+                        Background Color:
+                        <input
+                            type="color"
+                            value={otpProps.backgroundColor}
+                            onChange={(e) => handlePropChange('backgroundColor', e.target.value)}
+                        />
+                    </Label>
+                </OTPSetting>
+
+                <OTPSetting>
+                    <Label>
+                        Border Color:
+                        <input
+                            type="color"
+                            value={otpProps.borderColor}
+                            onChange={(e) => handlePropChange('borderColor', e.target.value)}
+                        />
+                    </Label>
+                </OTPSetting>
+
+                {/* Color Picker for Highlight Color */}
+                <OTPSetting>
+                    <Label>
+                        Highlight Color:
+                        <input
+                            type="color"
+                            value={otpProps.highlightColor}
+                            onChange={(e) => handlePropChange('highlightColor', e.target.value)}
+                        />
+                    </Label>
+                </OTPSetting>
             </OTPSettingsContainer>
+            <AuthButtonSeparator/>
+
             <AuthFormContent>
                 <AuthFormTitle>Log in</AuthFormTitle>
-                <AuthButtonSeparator/>
                 <AuthForm onSubmit={formik.handleSubmit} key={formKey}>
                     <>
                         <OtpFormLabel htmlFor="otp">[Example Prompt] We just sent you a temporary login code. Please
@@ -154,12 +205,16 @@ function App() {
                             onFullFill={formik.handleSubmit} // Pass the submitForm function to OtpInput
                             setFieldError={formik.setFieldError} // Pass setFieldError to OtpInput
                             setFieldTouched={formik.setFieldTouched} // Pass this prop to OtpInput
+                            textColor={otpProps.textColor}
+                            backgroundColor={otpProps.backgroundColor}
+                            highlightColor={otpProps.highlightColor}
+                            borderColor={otpProps.borderColor}
                         />
                     </>
                     {formik.touched.otp && formik.errors.otp && (
                         <ErrorMessage>{formik.errors.otp}</ErrorMessage>
                     )}
-                    <SubmitButton type={"submit"} disabled={formik.isSubmitting}>
+                    <SubmitButton type={"submit"} >
                         Submit
                     </SubmitButton>
                 </AuthForm>
