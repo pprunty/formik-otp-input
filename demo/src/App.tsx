@@ -63,7 +63,7 @@ function App() {
         textColor: '#000000',        // Default text color
         backgroundColor: '#ffffff',  // Default background color
         highlightColor: '#ff8000',
-        borderColor: '#ccc'
+        borderColor: '#DDDDDD'
     });
 
     const [formKey, setFormKey] = useState(0);

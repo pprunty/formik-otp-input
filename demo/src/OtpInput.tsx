@@ -90,18 +90,20 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input = styled.input<InputProps>`
-  width: 34px; // Larger width for easier tapping
-  height: 38px; // Larger height for visibility
+  width: 30px; // Larger width for easier tapping
+  height: 39px; // Larger height for visibility
   margin: 0 6px; // Space between input boxes
   text-align: center;
   font-size: 20px;
   font-family: Monospaced, monospace;
-  border: 1.5px solid ${props => (props.borderColor || '#ccc')};
-  border-radius: 10px; // Rounded corners
+  border: 1.3px solid ${props => (props.borderColor || '#DDDDDD')};
+  border-radius: 8px; // Rounded corners
   //caret-color: blue; // Visible caret color
   caret-color: transparent;
   color: ${props => props.textColor || '#000000'}; // Default to black if not provided
   background: ${props => props.backgroundColor || '#fff'};
+  box-shadow: 0.25px 0.5px 1px 0 rgb(229, 229, 229);
+  transition: background-color 0.3s, border-color 0.1s; /* Smooth transition for hover effect */
 
 
   &[type='number'] {
@@ -116,7 +118,7 @@ const Input = styled.input<InputProps>`
   &:focus {
     border-color: ${props => props.highlightColor || '#ff8000'}; // Change border color on focus
     outline: none; // Remove default outline
-    box-shadow: 0 0 5px ${props => props.highlightColor ? hexToRgba(props.highlightColor, 0.4) : 'rgba(218, 143, 82, 0.3)'}; // Use highlightColor for shadow
+    //box-shadow: 0 0 5px ${props => props.highlightColor ? hexToRgba(props.highlightColor, 0.4) : 'rgba(218, 143, 82, 0.3)'}; // Use highlightColor for shadow
   }
 
   &::placeholder {
