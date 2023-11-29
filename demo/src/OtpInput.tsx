@@ -153,7 +153,6 @@ const OtpInput: React.FC<OtpInputProps> = ({
                                            }) => {
         const [localOtp, setLocalOtp] = useState<string[]>(new Array(length).fill(''));
         const inputRefs = useRef<(HTMLInputElement | null)[]>(new Array(length).fill(null));
-        const otpSchema = useMemo(() => createOtpSchema(inputType, length), [inputType, length]);
         const [hasUserStartedTyping, setHasUserStartedTyping] = useState<boolean>(false);
         const [hasAutoSubmitted, setHasAutoSubmitted] = useState<boolean>(false);
 
@@ -178,51 +177,47 @@ const OtpInput: React.FC<OtpInputProps> = ({
             // event.target.select();
         };
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
-        if (!hasUserStartedTyping) {
-            setHasUserStartedTyping(true);
-        }
-        setFieldTouched("otp", true);
-
-        const newValue = event.target.value.slice(-1); // Take the last character
-        const currentOtpValue = localOtp[index];
-
-        // Check if the new value is the same as the current value
-        const isSameCharacter = newValue === currentOtpValue;
-
-        // Update the state only if the value is different
-        if (!isSameCharacter && newValue.length === 1 && isValidInput(newValue, inputType)) {
-            const newOtp = [...localOtp];
-            newOtp[index] = newValue;
-            setLocalOtp(newOtp);
-
-            onChange({
-                target: {
-                    name: "otp",
-                    value: newOtp.join('')
-                }
-            } as React.ChangeEvent<HTMLInputElement>);
-        }
-
-        // Move focus to the next field if the input value is valid
-        if (newValue.length === 1 && isValidInput(newValue, inputType) && index < length - 1) {
-            const nextInput = inputRefs.current[index + 1];
-            if (nextInput) {
-                nextInput.focus();
-                // nextInput.select();
+        const handleChange = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
+            if (!hasUserStartedTyping) {
+                setHasUserStartedTyping(true);
             }
-        } else if (autoSubmit && localOtp.join('').length === length) {
-            onFullFill();
-            setHasAutoSubmitted(true);
-        }
-    };
+            setFieldTouched("otp", true);
+
+            const newValue = event.target.value.slice(-1); // Take the last character
+            const currentOtpValue = localOtp[index];
+
+            // Check if the new value is the same as the current value
+            const isSameCharacter = newValue === currentOtpValue;
+
+            // Update the state only if the value is different
+            if (!isSameCharacter && newValue.length === 1 && isValidInput(newValue, inputType)) {
+                const newOtp = [...localOtp];
+                newOtp[index] = newValue;
+                setLocalOtp(newOtp);
+
+                onChange({
+                    target: {
+                        name: "otp",
+                        value: newOtp.join('')
+                    }
+                } as React.ChangeEvent<HTMLInputElement>);
+            }
+
+            // Move focus to the next field if the input value is valid
+            if (newValue.length === 1 && isValidInput(newValue, inputType) && index < length - 1) {
+                const nextInput = inputRefs.current[index + 1];
+                if (nextInput) {
+                    nextInput.focus();
+                    // nextInput.select();
+                }
+            } else if (autoSubmit && localOtp.join('').length === length && !hasAutoSubmitted) {
+                onFullFill();
+                setHasAutoSubmitted(true);
+            }
+        };
 
 
-
-
-
-
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
+        const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
             if (e.key === "Backspace") {
                 e.preventDefault();
                 if (localOtp[index] === '' && index > 0) {

@@ -1,8 +1,8 @@
 [![npm version](https://badge.fury.io/js/formik-otp-input.svg)](https://badge.fury.io/js/react-otp-input) 
 [![npm](https://img.shields.io/npm/dm/formik-otp-input.svg?logo=npm)](https://www.npmjs.com/package/react-otp-input) 
 [![npm](https://img.shields.io/bundlephobia/minzip/formik-otp-input)](https://www.npmjs.com/package/react-otp-input)
+![License](https://img.shields.io/npm/l/formik-otp-input.svg)
 ![GitHub Contributors](https://img.shields.io/github/contributors/pprunty/formik-otp-input.svg)
-[//]: # (![License]&#40;https://img.shields.io/npm/l/motormongo.svg&#41;)
 
 Author: [Patrick Prunty](https://pprunty.github.io/pprunty/).
 
