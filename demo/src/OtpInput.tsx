@@ -184,35 +184,32 @@ const OtpInput: React.FC<OtpInputProps> = ({
             setFieldTouched("otp", true);
 
             const newValue = event.target.value.slice(-1); // Take the last character
-            const currentOtpValue = localOtp[index];
+            const newOtp = [...localOtp];
+            newOtp[index] = newValue;
 
-            // Check if the new value is the same as the current value
-            const isSameCharacter = newValue === currentOtpValue;
+            // Update state with the new OTP value
+            setLocalOtp(newOtp);
 
-            // Update the state only if the value is different
-            if (!isSameCharacter && newValue.length === 1 && isValidInput(newValue, inputType)) {
-                const newOtp = [...localOtp];
-                newOtp[index] = newValue;
-                setLocalOtp(newOtp);
-
-                onChange({
-                    target: {
-                        name: "otp",
-                        value: newOtp.join('')
-                    }
-                } as React.ChangeEvent<HTMLInputElement>);
-            }
-
-            // Move focus to the next field if the input value is valid
-            if (newValue.length === 1 && isValidInput(newValue, inputType) && index < length - 1) {
-                const nextInput = inputRefs.current[index + 1];
-                if (nextInput) {
-                    nextInput.focus();
-                    // nextInput.select();
+            onChange({
+                target: {
+                    name: "otp",
+                    value: newOtp.join('')
                 }
-            } else if (autoSubmit && localOtp.join('').length === length && !hasAutoSubmitted) {
-                onFullFill();
-                setHasAutoSubmitted(true);
+            } as React.ChangeEvent<HTMLInputElement>);
+
+            // Move focus or handle auto-submit
+            if (newValue.length === 1 && isValidInput(newValue, inputType)) {
+                if (index < length - 1) {
+                    // Move focus to the next field if not the last one
+                    inputRefs.current[index + 1]?.focus();
+                } else {
+                    // Check if all fields are filled out and handle auto-submit
+                    const isOtpComplete = newOtp.every(val => val.length === 1);
+                    if (autoSubmit && isOtpComplete && !hasAutoSubmitted) {
+                        onFullFill();
+                        setHasAutoSubmitted(true);
+                    }
+                }
             }
         };
 
