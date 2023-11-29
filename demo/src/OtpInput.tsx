@@ -99,7 +99,8 @@ const Input = styled.input<InputProps>`
   border: 1.3px solid ${props => (props.borderColor || '#DDDDDD')};
   border-radius: 8px; // Rounded corners
   //caret-color: blue; // Visible caret color
-  caret-color: transparent;
+  //caret-color: transparent;
+  caret: block;
   color: ${props => props.textColor || '#000000'}; // Default to black if not provided
   background: ${props => props.backgroundColor || '#fff'};
   box-shadow: 0.25px 0.5px 1px 0 rgb(229, 229, 229);
