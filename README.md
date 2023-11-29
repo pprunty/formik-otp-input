@@ -1,8 +1,9 @@
-[![npm version](https://badge.fury.io/js/formik-otp-input.svg)](https://badge.fury.io/js/formik-otp-input) 
-[![npm](https://img.shields.io/npm/dm/formik-otp-input.svg?logo=npm)](https://www.npmjs.com/package/formik-otp-input) 
-[![npm](https://img.shields.io/bundlephobia/minzip/formik-otp-input)](https://www.npmjs.com/package/formik-otp-input)
-![License](https://img.shields.io/npm/l/formik-otp-input.svg)
-![GitHub Contributors](https://img.shields.io/github/contributors/pprunty/formik-otp-input.svg)
+[![npm version](https://img.shields.io/npm/v/formik-otp-input)](https://www.npmjs.com/package/formik-otp-input)
+[![npm downloads](https://img.shields.io/npm/dm/formik-otp-input)](https://www.npmjs.com/package/formik-otp-input)
+[![npm minzip size](https://img.shields.io/bundlephobia/minzip/formik-otp-input)](https://www.npmjs.com/package/formik-otp-input)
+[![npm license](https://img.shields.io/npm/l/formik-otp-input)](https://www.npmjs.com/package/formik-otp-input)
+[![GitHub contributors](https://img.shields.io/github/contributors/pprunty/formik-otp-input)](https://github.com/pprunty/formik-otp-input/graphs/contributors)
+
 
 Author: [Patrick Prunty](https://pprunty.github.io/pprunty/).
 
