@@ -1,6 +1,6 @@
-[![npm version](https://badge.fury.io/js/formik-otp-input.svg)](https://badge.fury.io/js/react-otp-input) 
-[![npm](https://img.shields.io/npm/dm/formik-otp-input.svg?logo=npm)](https://www.npmjs.com/package/react-otp-input) 
-[![npm](https://img.shields.io/bundlephobia/minzip/formik-otp-input)](https://www.npmjs.com/package/react-otp-input)
+[![npm version](https://badge.fury.io/js/formik-otp-input.svg)](https://badge.fury.io/js/formik-otp-input) 
+[![npm](https://img.shields.io/npm/dm/formik-otp-input.svg?logo=npm)](https://www.npmjs.com/package/formik-otp-input) 
+[![npm](https://img.shields.io/bundlephobia/minzip/formik-otp-input)](https://www.npmjs.com/package/formik-otp-input)
 ![License](https://img.shields.io/npm/l/formik-otp-input.svg)
 ![GitHub Contributors](https://img.shields.io/github/contributors/pprunty/formik-otp-input.svg)
 
