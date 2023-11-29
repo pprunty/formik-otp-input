@@ -18,7 +18,7 @@ jobs:
         name: Checkout Repository 🛒
 
       - name: Setup Node.js (v20) 🚀
-        uses: actions/setup-node@v3 🚀
+        uses: actions/setup-node@v3
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
