@@ -9,6 +9,7 @@ import {
 import {useFormik} from "formik";
 import OtpInput from './OtpInput';
 import styled from "styled-components";
+import OtpForm from "./Form";
 
 
 // OTP settings container
@@ -187,37 +188,7 @@ function App() {
             <AuthButtonSeparator/>
 
             <AuthFormContent>
-                <AuthFormTitle>Log in</AuthFormTitle>
-                <AuthForm onSubmit={formik.handleSubmit} key={formKey}>
-                    <>
-                        <OtpFormLabel htmlFor="otp">[Example Prompt] We just sent you a temporary login code. Please
-                            check your
-                            inbox.</OtpFormLabel>
-                        <OtpInput
-                            length={otpProps.length}
-                            autoFocus={otpProps.autoFocus}
-                            autoSubmit={otpProps.autoSubmit}
-                            inputType={otpProps.inputType}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.otp}
-                            onChange={formik.handleChange}
-                            autoComplete="one-time-code"
-                            onFullFill={formik.handleSubmit} // Pass the submitForm function to OtpInput
-                            setFieldError={formik.setFieldError} // Pass setFieldError to OtpInput
-                            setFieldTouched={formik.setFieldTouched} // Pass this prop to OtpInput
-                            textColor={otpProps.textColor}
-                            backgroundColor={otpProps.backgroundColor}
-                            highlightColor={otpProps.highlightColor}
-                            borderColor={otpProps.borderColor}
-                        />
-                    </>
-                    {formik.touched.otp && formik.errors.otp && (
-                        <ErrorMessage>{formik.errors.otp}</ErrorMessage>
-                    )}
-                    <SubmitButton type={"submit"} >
-                        Submit
-                    </SubmitButton>
-                </AuthForm>
+                <OtpForm/>
             </AuthFormContent>
         </AuthFormContainer>
     );

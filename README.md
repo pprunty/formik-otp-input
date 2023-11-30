@@ -11,9 +11,10 @@ Author: [Patrick Prunty](https://pprunty.github.io/pprunty/).
 
 `formik-otp-input` is an enhancement to the [formik](https://github.com/jaredpalmer/formik) library, 
 designed specifically for React applications. This extension introduces a specialized OTP (one-time-password) input
-feature. It offers a customizable input field count for the password, along with user-defined options for automating 
-focus, submission, and key change events. Additionally, this extension supports autofill suggestions on mobile devices,
-which may vary based on the user's mobile or email service provider.
+feature. It offers a customizable input field count for the password, along with user-defined options for  
+`autoFocus`, `autoSubmit`, `borderColor`, `highlightColor`, `textColor` and `backgroundColor`. Additionally, this 
+extension supports autofill suggestions on mobile devices, which may vary based on the user's mobile or email service
+provider, as well as the format of the email body send to the user's device.
 
 The inspiration for this project came in part from the smooth checkout process experienced with [Stripe/Link payments](https://stripe.com/docs/payments/link).
 Its integration is versatile, making it suitable for a variety of applications, such as:
@@ -55,66 +56,96 @@ Import `Index`  from the package and use them in your component.
 ```jsx
 import React from 'react';
 import { useFormik } from 'formik';
-import Index from 'formik-otp-input'; // Import the Index component
+import * as Yup from 'yup';
+import OtpInput from './OtpInput';
+import {OtpFormLabel} from "./AuthFormStyles"; // Assuming OtpInput is in the same directory
 
+const YOUR_OTP_LENGTH = 6; // Replace this with the length of your OTP
 
-// Define inline styles (you can define styles whatever way you like)
-const labelStyle = {
-    display: 'block',
-    marginBottom: '8px',
-    fontSize: '16px',
-    fontWeight: 'bold',
+// Validation schema
+// const validationSchema = Yup.object({
+//     otp: Yup.string()
+//         .required('OTP is required')
+//         .length(YOUR_OTP_LENGTH, `OTP must be exactly ${YOUR_OTP_LENGTH} characters long`),
+//     // ... validation for other fields
+// });
+
+// CSS Styles
+const formStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '20px',
 };
 
-const errorMessage = {
-    color: 'red',
-    fontSize: '12px',
-    marginTop: '15px',
-    textAlign: 'center',
-}
+const fieldStyle = {
+    margin: '10px 0',
+};
 
-const SimpleForm = () => {
-    // Using useFormik to initialize Formik
+const errorTextStyle = {
+    marginTop: '15px',
+    fontSize: '14px',
+    color: '#ff6b6b',
+    marginBottom: '10px',
+};
+
+const submitButtonStyle = {
+    padding: '10px 20px',
+    backgroundColor: '#4caf50',
+    color: 'white',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    marginTop: '20px', // Added top margin
+
+    ':hover': {
+        backgroundColor: '#45a049',
+    },
+};
+
+// Form component
+const OtpForm = () => {
     const formik = useFormik({
-        initialValues: { otp: '' },
+        initialValues: {
+            otp: '',
+            // ... other form fields
+        },
         onSubmit: (values) => {
-            console.log('OTP Submitted:', values.otp);
-            // Handle OTP submission logic here (i.e call on backend API to validate OTP)
+            console.log('Form data:', values);
+            window.alert("Submitted");
+            // Perform submission actions
         },
     });
 
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <label 
-                htmlFor="otp" 
-                style={labelStyle}
-            >
-                We just sent you a temporary login code. 
-                Please check your inbox.
-            </label>
-            <Index
-                length={6} // Define the length of the OTP
+        <form style={formStyle} onSubmit={formik.handleSubmit}>
+            <OtpInput
+                length={YOUR_OTP_LENGTH}
                 value={formik.values.otp}
-                onChange={formik.handleChange}
-                onFullFill={formik.handleSubmit} // Submit the form when OTP is fully entered
-                setFieldError={formik.setFieldError}
+                inputType={"numeric"}    // options are numeric, alphabetic or alphanumeric
+                autoFocus={true}    // Default is true. Will auto-focus first digit if true
+                autoSubmit={true}    // Default is true. Will auto-submit form onFullFill
+                onBlur={formik.handleBlur}   // Formik handler, used to handle onBlur events
+                onChange={formik.handleChange}   // Formik handler, used to handle change events
+                onFullFill={formik.handleSubmit}     // Formik handler, used to handle autoSubmit
+                setFieldError={formik.setFieldError}     // Formik handler, used to handle error rendering
                 setFieldTouched={formik.setFieldTouched}
-                inputType={"numeric"} // This is "numeric" by default, other options are "alphabetic" and "alphanumeric"
-                autoFocus={true} // This is true by default, will auto focus the first field in the Index
-                autoSubmit={true} // This is true by default, will auto submit when all six otp values are filled
-                keyHandling={true} // This is true by default, allows users to use backspace and arrow keyboard keys
+                // ... other props you can pass
+                highlightColor={'#4caf50'}
+                // textColor={'#FFFFFF'}
+                // backgroundColor={'#FFFFFF'}
+                // borderColor={'#FFFFFF'}
             />
-            {formik.touched.otp && formik.errors.otp && (
-                <div style={labelStyle}>{formik.errors.otp}</div>
+            {formik.errors.otp && formik.touched.otp && (
+                <div style={errorTextStyle}>{formik.errors.otp}</div>
             )}
-            <button type="submit" disabled={formik.isSubmitting}>
-                Submit
-            </button>
+
+            <button type="submit" style={submitButtonStyle} >Submit</button>
         </form>
     );
 };
 
-export default SimpleForm;
+export default OtpForm;
 ```
 
 ### Advanced Example
@@ -124,55 +155,9 @@ OTP input field for the user to input before making a second API call to the ser
 
 The following example details how to integration the Index component in such a two-step process:
 
-```jsx
-import React, { useState } from 'react';
-import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
 
-const EmailSchema = Yup.object().shape({
-  email: Yup.string().email('Invalid email').required('Required'),
-});
-
-const OTPSchema = Yup.object().shape({
-  otp: Yup.number().required('Required'),
-});
-
-const MultiStepForm = () => {
-  const [step, setStep] = useState(1);
-
-  const handleSubmit = (values, actions) => {
-    if (step === 1) {
-      // Send OTP to email
-      // Switch to step 2
-      setStep(2);
-    } else {
-      // Final submission with OTP
-      // Submit to server or handle accordingly
-    }
-  };
-
-  return (
-    <Formik
-      initialValues={{ email: '', otp: '' }}
-      validationSchema={step === 1 ? EmailSchema : OTPSchema}
-      onSubmit={handleSubmit}
-    >
-      {({ isSubmitting }) => (
-        <Form>
-          {step === 1 && <Field type="email" name="email" />}
-          {step === 2 && <Field type="number" name="otp" />}
-          
-          <button type="submit" disabled={isSubmitting}>
-            {step === 1 ? 'Send OTP' : 'Submit'}
-          </button>
-        </Form>
-      )}
-    </Formik>
-  );
-};
-
-export default MultiStepForm;
-
+```
+todo: add example
 ```
 
 ## License 🎫
