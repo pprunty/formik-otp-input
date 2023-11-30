@@ -1,11 +1,6 @@
-import React, {CSSProperties, useEffect, useState} from 'react';
-import {
-    AuthButtonSeparator,
-    AuthFormContainer,
-    AuthFormContent,
-} from "./AuthFormStyles";
+import React, {useEffect, useState} from 'react';
 import {useFormik} from "formik";
-import OtpInput from './OtpInput';
+import OtpInput from "formik-otp-input";
 import styled from "styled-components";
 
 // OTP settings container
@@ -15,7 +10,7 @@ const OTPSettingsContainer = styled.div`
   gap: 10px;
   margin-bottom: 20px;
   justify-content: center;
-  
+
   @media (max-width: 600px) {
     flex-direction: column;
   }
@@ -50,32 +45,50 @@ const Label = styled.label`
   color: #333;
 `;
 
-// CSS Styles
-const formStyle: CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '20px',
-};
+const AuthFormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+`;
 
+const AuthFormContent = styled.div`
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+`;
 
-const errorTextStyle: CSSProperties = {
-    marginTop: '15px',
-    fontSize: '14px',
-    color: '#ff6b6b',
-    marginBottom: '10px',
-};
+const AuthButtonSeparator = styled.div`
+  height: 1px;
+  background-color: #37352f; // Use a color that fits your design
+  opacity: 0.16;
+  margin: 25px 0; // Adjust the space before and after the separator
+  width: 100%; // This will ensure the separator stretches across the container
+`;
 
-const submitButtonStyle: CSSProperties = {
-    padding: '10px 20px',
-    backgroundColor: '#4caf50',
-    color: 'white',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    marginTop: '20px', // Added top margin
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+`;
 
-};
+const ErrorText = styled.div`
+  margin-top: 15px;
+  font-size: 14px;
+  color: #ff6b6b;
+  margin-bottom: 10px;
+`;
+
+const SubmitButton = styled.button`
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+`;
 
 function App() {
 
@@ -211,7 +224,7 @@ function App() {
             <AuthButtonSeparator/>
 
             <AuthFormContent>
-                <form style={formStyle} onSubmit={formik.handleSubmit} key={formKey}>
+                <Form onSubmit={formik.handleSubmit} key={formKey}>
                     <OtpInput
                         length={otpProps.length}
                         value={formik.values.otp}
@@ -230,10 +243,10 @@ function App() {
                         borderColor={otpProps.borderColor}
                     />
                     {formik.errors.otp && formik.touched.otp && (
-                        <div style={errorTextStyle}>{formik.errors.otp}</div>
+                        <ErrorText>{formik.errors.otp}</ErrorText>
                     )}
-                    <button type="submit" style={submitButtonStyle} >Submit</button>
-                </form>
+                    <SubmitButton type="submit">Submit</SubmitButton>
+                </Form>
             </AuthFormContent>
         </AuthFormContainer>
     );
