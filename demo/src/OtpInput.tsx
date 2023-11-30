@@ -100,7 +100,7 @@ const Input = styled.input<InputProps>`
   }
 
   &:focus {
-    border-color: ${props => props.highlightColor || '#ff8000'};
+    border-color: ${props => props.highlightColor || '#0862e1'};
     outline: none;
   }
 
@@ -126,6 +126,11 @@ const Spacer = styled.div`
   color: #DDDDDD;
   margin-right: 3px;
   margin-left: 3px;
+
+  @media (max-width: 600px) {
+    margin-right: 1px;
+    margin-left: 1px;
+  }
 `;
 
 const OtpInput: React.FC<OtpInputProps> = ({
