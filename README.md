@@ -58,17 +58,9 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import OtpInput from './OtpInput';
-import {OtpFormLabel} from "./AuthFormStyles"; // Assuming OtpInput is in the same directory
 
 const YOUR_OTP_LENGTH = 6; // Replace this with the length of your OTP
 
-// Validation schema
-// const validationSchema = Yup.object({
-//     otp: Yup.string()
-//         .required('OTP is required')
-//         .length(YOUR_OTP_LENGTH, `OTP must be exactly ${YOUR_OTP_LENGTH} characters long`),
-//     // ... validation for other fields
-// });
 
 // CSS Styles
 const formStyle = {
@@ -96,7 +88,7 @@ const submitButtonStyle = {
     border: 'none',
     borderRadius: '5px',
     cursor: 'pointer',
-    marginTop: '20px', // Added top margin
+    marginTop: '20px',
 
     ':hover': {
         backgroundColor: '#45a049',
@@ -108,7 +100,7 @@ const OtpForm = () => {
     const formik = useFormik({
         initialValues: {
             otp: '',
-            // ... other form fields
+            // ... other form fields if you wish
         },
         onSubmit: (values) => {
             console.log('Form data:', values);
@@ -135,11 +127,14 @@ const OtpForm = () => {
                 // textColor={'#FFFFFF'}
                 // backgroundColor={'#FFFFFF'}
                 // borderColor={'#FFFFFF'}
+                // ... override any pre-existing styles if required
+                // style={{
+                //     'backgroundColor': '#ffc300'
+                // }}
             />
             {formik.errors.otp && formik.touched.otp && (
                 <div style={errorTextStyle}>{formik.errors.otp}</div>
             )}
-
             <button type="submit" style={submitButtonStyle} >Submit</button>
         </form>
     );

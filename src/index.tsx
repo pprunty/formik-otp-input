@@ -60,7 +60,7 @@ interface OtpInputProps {
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  max-width: inherit;
+  max-width: 90%;
   //align-items: center; // Optional, for vertical centering
   // Additional style for space between third and fourth input
   .extra-space {
@@ -91,17 +91,20 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const Input = styled.input<InputProps>`
   width: 34px; // Larger width for easier tapping
-  height: 38px; // Larger height for visibility
-  margin: 0 6px; // Space between input boxes
+  height: 43px; // Larger height for visibility
+  margin: 0 4px; // Space between input boxes
   text-align: center;
   font-size: 20px;
   font-family: Monospaced, monospace;
-  border: 1.5px solid ${props => (props.borderColor || '#ccc')};
-  border-radius: 10px; // Rounded corners
+  border: 1.5px solid ${props => (props.borderColor || '#DDDDDD')};
+  border-radius: 8px; // Rounded corners
   //caret-color: blue; // Visible caret color
-  caret-color: transparent;
+  //caret-color: transparent;
+  caret: block;
   color: ${props => props.textColor || '#000000'}; // Default to black if not provided
   background: ${props => props.backgroundColor || '#fff'};
+  box-shadow: 0.25px 0.5px 1px 0 rgb(229, 229, 229);
+  transition: background-color 0.3s, border-color 0.1s; /* Smooth transition for hover effect */
 
 
   &[type='number'] {
@@ -114,9 +117,8 @@ const Input = styled.input<InputProps>`
   }
 
   &:focus {
-    border-color: ${props => props.highlightColor || '#ff8000'}; // Change border color on focus
-    outline: none; // Remove default outline
-    box-shadow: 0 0 5px ${props => props.highlightColor ? hexToRgba(props.highlightColor, 0.4) : 'rgba(218, 143, 82, 0.3)'}; // Use highlightColor for shadow
+    border-color: ${props => props.highlightColor || '#0862e1'}; // Change border color on focus
+    outline: none;
   }
 
   &::placeholder {
@@ -130,7 +132,7 @@ const Input = styled.input<InputProps>`
 
   // Responsive design adjustments
   @media (max-width: 600px) {
-    width: 30px;
+    width: 26px;
     height: 42px;
   }
 `;
@@ -154,7 +156,6 @@ const OtpInput: React.FC<OtpInputProps> = ({
         const [localOtp, setLocalOtp] = useState<string[]>(new Array(length).fill(''));
         const inputRefs = useRef<(HTMLInputElement | null)[]>(new Array(length).fill(null));
         const [hasUserStartedTyping, setHasUserStartedTyping] = useState<boolean>(false);
-        const [hasAutoSubmitted, setHasAutoSubmitted] = useState<boolean>(false);
 
         // Custom hook for OTP validation
         useEffect(() => {
@@ -173,8 +174,12 @@ const OtpInput: React.FC<OtpInputProps> = ({
             }
         }, [autoFocus, setFieldTouched]); // Include setFieldTouched in the dependency array
 
-        const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-            // event.target.select();
+        const resetOtp = () => {
+            setLocalOtp(new Array(length).fill(''));
+            if (inputRefs.current[0]) {
+                inputRefs.current[0].focus();
+                setFieldTouched("otp", true);
+            }
         };
 
         const handleChange = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
@@ -185,30 +190,37 @@ const OtpInput: React.FC<OtpInputProps> = ({
 
             const newValue = event.target.value.slice(-1); // Take the last character
             const newOtp = [...localOtp];
+            console.log(`comparing current value = ${newOtp[index]} and new value = ${newValue}`)
             newOtp[index] = newValue;
 
             // Update state with the new OTP value
             setLocalOtp(newOtp);
 
-            onChange({
-                target: {
-                    name: "otp",
-                    value: newOtp.join('')
+            const isOtpComplete = newOtp.every(val => val.length === 1);
+
+            if (isOtpComplete) {
+                // Manually update Formik values
+                onChange({
+                    target: {
+                        name: "otp",
+                        value: newOtp.join('')
+                    }
+                } as React.ChangeEvent<HTMLInputElement>);
+
+                if (autoSubmit) {
+                    onFullFill();
+                    resetOtp()
                 }
-            } as React.ChangeEvent<HTMLInputElement>);
+            }
 
             // Move focus or handle auto-submit
             if (newValue.length === 1 && isValidInput(newValue, inputType)) {
+                setFieldError("otp", undefined); // Clear any previous error
                 if (index < length - 1) {
                     // Move focus to the next field if not the last one
                     inputRefs.current[index + 1]?.focus();
-                } else {
-                    // Check if all fields are filled out and handle auto-submit
-                    const isOtpComplete = newOtp.every(val => val.length === 1);
-                    if (autoSubmit && isOtpComplete && !hasAutoSubmitted) {
-                        onFullFill();
-                        setHasAutoSubmitted(true);
-                    }
+                    // todo: only do this on desktop but fix same character not update issue
+                    // inputRefs.current[index + 1]?.select();
                 }
             }
         };
@@ -236,6 +248,8 @@ const OtpInput: React.FC<OtpInputProps> = ({
             } else if (e.key === "ArrowLeft" && index > 0) {
                 e.preventDefault()
                 inputRefs.current[index - 1]?.focus();
+                // todo: only do this on desktop but fix same character not update issue
+                // inputRefs.current[index - 1]?.select();
             } else if (e.key === "ArrowRight" && index < length - 1) {
                 e.preventDefault()
                 inputRefs.current[index + 1]?.focus();
@@ -243,7 +257,7 @@ const OtpInput: React.FC<OtpInputProps> = ({
         };
 
 
-        const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>, index: number) => {
+        const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
             if (event.key === 'Enter') {
                 event.preventDefault();
                 const isFullFilled = localOtp.every((val) => val !== '');
@@ -264,7 +278,7 @@ const OtpInput: React.FC<OtpInputProps> = ({
                 case 'alphabetic':
                     return 'text';
                 case 'numeric':
-                    return 'number';
+                    return 'tel';
                 default:
                     return 'text';
             }
@@ -287,7 +301,7 @@ const OtpInput: React.FC<OtpInputProps> = ({
                             ref={el => inputRefs.current[index] = el}
                             onChange={e => handleChange(e, index)}
                             onKeyDown={e => handleKeyDown(e, index)}
-                            onKeyPress={e => handleKeyPress(e, index)}
+                            onKeyPress={e => handleKeyPress(e)}
                             onBlur={onBlur} // Use the onBlur prop
                             autoComplete={autoComplete}
                             className={isEvenLength && index === midpointIndex ? 'extra-space' : ''}
@@ -295,7 +309,6 @@ const OtpInput: React.FC<OtpInputProps> = ({
                             autoCapitalize="off"
                             spellCheck="false"
                             textColor={textColor}
-                            onFocus={handleFocus}
                             backgroundColor={backgroundColor}
                             highlightColor={highlightColor}
                             borderColor={borderColor}
