@@ -27,6 +27,11 @@ Its integration is versatile, making it suitable for a variety of applications, 
 5. User registration and login procedures for web and mobile applications.
 6. Quick response actions in interactive customer service tools.
 
+<div align="center">
+  <img src="./demo.gif" alt="Demo GIF">
+</div>
+
+
 ## Demo 🚨
 
 #### 🖥️️ A live demo of this component is hosted on GitHub pages and can be previewed by following [THIS LINK](https://pprunty.github.io/formik-otp-input/).
