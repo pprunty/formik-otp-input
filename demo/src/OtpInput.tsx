@@ -61,26 +61,11 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   max-width: 90%;
-  //align-items: center; // Optional, for vertical centering
-  // Additional style for space between third and fourth input
-  .extra-space {
-    margin-right: 15px; // Adjust the space as needed
-  }
-`;
 
-const hexToRgba = (hex: any, alpha = 1) => {
-    let r: any = 0, g: any = 0, b: any = 0;
-    if (hex.length === 4) {
-        r = "0x" + hex[1] + hex[1];
-        g = "0x" + hex[2] + hex[2];
-        b = "0x" + hex[3] + hex[3];
-    } else if (hex.length === 7) {
-        r = "0x" + hex[1] + hex[2];
-        g = "0x" + hex[3] + hex[4];
-        b = "0x" + hex[5] + hex[6];
-    }
-    return `rgba(${+r}, ${+g}, ${+b}, ${alpha})`;
-};
+  //.extra-space {
+  //  margin-right: 15px; // Adjust the space as needed
+  //}
+`;
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     textColor?: string;
@@ -90,21 +75,19 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input = styled.input<InputProps>`
-  width: 34px; // Larger width for easier tapping
-  height: 43px; // Larger height for visibility
-  margin: 0 4px; // Space between input boxes
+  width: 34px;
+  height: 43px;
+  margin: 0 4px;
   text-align: center;
   font-size: 20px;
   font-family: Monospaced, monospace;
   border: 1.5px solid ${props => (props.borderColor || '#DDDDDD')};
-  border-radius: 8px; // Rounded corners
-  //caret-color: blue; // Visible caret color
-  //caret-color: transparent;
+  border-radius: 8px;
   caret: block;
-  color: ${props => props.textColor || '#000000'}; // Default to black if not provided
+  color: ${props => props.textColor || '#000000'};
   background: ${props => props.backgroundColor || '#fff'};
   box-shadow: 0.25px 0.5px 1px 0 rgb(229, 229, 229);
-  transition: background-color 0.3s, border-color 0.1s; /* Smooth transition for hover effect */
+  transition: background-color 0.3s, border-color 0.1s;
 
 
   &[type='number'] {
@@ -117,25 +100,32 @@ const Input = styled.input<InputProps>`
   }
 
   &:focus {
-    border-color: ${props => props.highlightColor || '#ff8000'}; // Change border color on focus
-    outline: none; // Remove default outline
-      //box-shadow: 0 0 5px ${props => props.highlightColor ? hexToRgba(props.highlightColor, 0.4) : 'rgba(218, 143, 82, 0.3)'}; // Use highlightColor for shadow
+    border-color: ${props => props.highlightColor || '#ff8000'};
+    outline: none;
   }
 
   &::placeholder {
     color: #ced4da;
   }
 
-  // Styles for error feedback
   &.error {
     border-color: #dc3545;
   }
 
-  // Responsive design adjustments
   @media (max-width: 600px) {
     width: 26px;
     height: 40px;
   }
+`;
+
+const Spacer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: #DDDDDD;
+  margin-right: 3px;
+  margin-left: 3px;
 `;
 
 const OtpInput: React.FC<OtpInputProps> = ({
@@ -164,7 +154,7 @@ const OtpInput: React.FC<OtpInputProps> = ({
             if (hasUserStartedTyping) {
                 validateOtp(otpValue, inputType, length, setFieldError);
             } else {
-                setFieldError("otp", undefined); // Clear error initially
+                setFieldError("otp", undefined);
             }
         }, [localOtp, inputType, length, setFieldError, hasUserStartedTyping]);
 
@@ -175,17 +165,12 @@ const OtpInput: React.FC<OtpInputProps> = ({
             }
         }, [autoFocus, setFieldTouched]); // Include setFieldTouched in the dependency array
 
-        const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-            // event.target.select();
-        };
-
         const resetOtp = () => {
             setLocalOtp(new Array(length).fill(''));
             if (inputRefs.current[0]) {
                 inputRefs.current[0].focus();
                 setFieldTouched("otp", true);
             }
-            // If you have any additional states related to OTP validation, reset them here
         };
 
         const handleChange = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
@@ -196,7 +181,6 @@ const OtpInput: React.FC<OtpInputProps> = ({
 
             const newValue = event.target.value.slice(-1); // Take the last character
             const newOtp = [...localOtp];
-            console.log(`comparing current value = ${newOtp[index]} and new value = ${newValue}`)
             newOtp[index] = newValue;
 
             // Update state with the new OTP value
@@ -263,7 +247,7 @@ const OtpInput: React.FC<OtpInputProps> = ({
         };
 
 
-        const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>, index: number) => {
+        const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
             if (event.key === 'Enter') {
                 event.preventDefault();
                 const isFullFilled = localOtp.every((val) => val !== '');
@@ -307,7 +291,7 @@ const OtpInput: React.FC<OtpInputProps> = ({
                             ref={el => inputRefs.current[index] = el}
                             onChange={e => handleChange(e, index)}
                             onKeyDown={e => handleKeyDown(e, index)}
-                            onKeyPress={e => handleKeyPress(e, index)}
+                            onKeyPress={e => handleKeyPress(e)}
                             onBlur={onBlur} // Use the onBlur prop
                             autoComplete={autoComplete}
                             className={isEvenLength && index === midpointIndex ? 'extra-space' : ''}
@@ -315,7 +299,6 @@ const OtpInput: React.FC<OtpInputProps> = ({
                             autoCapitalize="off"
                             spellCheck="false"
                             textColor={textColor}
-                            onFocus={handleFocus}
                             backgroundColor={backgroundColor}
                             highlightColor={highlightColor}
                             borderColor={borderColor}
@@ -323,7 +306,7 @@ const OtpInput: React.FC<OtpInputProps> = ({
                             //     'backgroundColor': '#ffc300'
                             // }}
                         />
-                        {isEvenLength && index === midpointIndex && <div className="spacer"></div>}
+                        {isEvenLength && index === midpointIndex && <Spacer>-</Spacer>}
                     </>
                 ))}
             </Container>

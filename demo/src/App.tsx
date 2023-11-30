@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useFormik} from "formik";
-import OtpInput from "formik-otp-input";
+import OtpInput from "./OtpInput";
 import styled from "styled-components";
 
 // OTP settings container
@@ -88,6 +88,10 @@ const SubmitButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
+
+  &:hover {
+    background-color: #45a049
+  }
 `;
 
 function App() {
