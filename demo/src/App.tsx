@@ -58,9 +58,6 @@ const formStyle: CSSProperties = {
     padding: '20px',
 };
 
-const fieldStyle: CSSProperties = {
-    margin: '10px 0',
-};
 
 const errorTextStyle: CSSProperties = {
     marginTop: '15px',

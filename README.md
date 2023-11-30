@@ -63,7 +63,7 @@ import OtpInput from './OtpInput';
 const YOUR_OTP_LENGTH = 6; // Replace this with the length of your OTP
 
 
-// CSS Styles
+// CSS Styles, adjust according to your needs
 const formStyle = {
     display: 'flex',
     flexDirection: 'column',
@@ -90,10 +90,6 @@ const submitButtonStyle = {
     borderRadius: '5px',
     cursor: 'pointer',
     marginTop: '20px',
-
-    ':hover': {
-        backgroundColor: '#45a049',
-    },
 };
 
 // Form component
@@ -105,7 +101,7 @@ const OtpForm = () => {
         },
         onSubmit: (values) => {
             console.log('Form data:', values);
-            window.alert("Submitted");
+            window.alert(`Submitted otp value = ${values.otp}`);
             // Perform submission actions
         },
     });
