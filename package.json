@@ -1,6 +1,6 @@
 {
   "name": "formik-otp-input",
-  "version": "0.1.1-alpha",
+  "version": "0.1.1-beta",
   "description": "A React component for one-time-password.",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
