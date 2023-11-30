@@ -1,10 +1,8 @@
 import React, {CSSProperties, useEffect, useState} from 'react';
 import {
-    AuthButtonSeparator, AuthForm,
+    AuthButtonSeparator,
     AuthFormContainer,
     AuthFormContent,
-    AuthFormTitle, ErrorMessage, OtpFormLabel,
-    SubmitButton,
 } from "./AuthFormStyles";
 import {useFormik} from "formik";
 import OtpInput from './OtpInput';
