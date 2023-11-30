@@ -11,8 +11,9 @@ Author: [Patrick Prunty](https://pprunty.github.io/pprunty/).
 
 `formik-otp-input` is an enhancement to the [formik](https://github.com/jaredpalmer/formik) library, 
 designed specifically for React applications. This extension introduces a specialized OTP (one-time-password) input
-feature. It offers a customizable input field count for the password, along with user-defined options for  
-`autoFocus`, `autoSubmit`, `borderColor`, `highlightColor`, `textColor` and `backgroundColor`. Additionally, this 
+feature. It offers a customizable input field count for the password, along with user-defined props and options for  
+`autoFocus`, `autoSubmit`, `borderColor`, `highlightColor`, `textColor` and `backgroundColor`. The component is responsive,
+meaning it is compatible with Android and iOS device browsers. Additionally, this 
 extension supports autofill suggestions on mobile devices, which may vary based on the user's mobile or email service
 provider, as well as the format of the email body send to the user's device.
 
@@ -114,7 +115,7 @@ const OtpForm = () => {
             <OtpInput
                 length={YOUR_OTP_LENGTH}
                 value={formik.values.otp}
-                inputType={"numeric"}    // options are numeric, alphabetic or alphanumeric
+                inputType={"numeric"}    // Default is numeric. Options are numeric, alphabetic or alphanumeric
                 autoFocus={true}    // Default is true. Will auto-focus first digit if true
                 autoSubmit={true}    // Default is true. Will auto-submit form onFullFill
                 onBlur={formik.handleBlur}   // Formik handler, used to handle onBlur events
@@ -149,7 +150,6 @@ making an API call to the backend to trigger the generation of the one-time-pass
 OTP input field for the user to input before making a second API call to the server to validate the OTP. 
 
 The following example details how to integration the Index component in such a two-step process:
-
 
 ```
 todo: add example
