@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useFormik} from "formik";
-import OtpInput from "./OtpInput";
+import OtpInput from "formik-otp-input";
 import styled from "styled-components";
 
 // OTP settings container
