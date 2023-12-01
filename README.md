@@ -57,13 +57,13 @@ yarn install formik-otp-input
 ## Usage 🔨
 
 ### Basic example 
-Import `Index`  from the package and use them in your component.
+Import `formik-otp-input`  from the package and use them in your component.
 
 ```jsx
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import OtpInput from './OtpInput';
+import OtpInput from 'formik-otp-input';
 
 const YOUR_OTP_LENGTH = 6; // Replace this with the length of your OTP
 
