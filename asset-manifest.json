@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/formik-otp-input/static/css/main.f248378a.css",
-    "main.js": "/formik-otp-input/static/js/main.02bac2de.js",
+    "main.js": "/formik-otp-input/static/js/main.da676557.js",
     "index.html": "/formik-otp-input/index.html",
     "main.f248378a.css.map": "/formik-otp-input/static/css/main.f248378a.css.map",
-    "main.02bac2de.js.map": "/formik-otp-input/static/js/main.02bac2de.js.map"
+    "main.da676557.js.map": "/formik-otp-input/static/js/main.da676557.js.map"
   },
   "entrypoints": [
     "static/css/main.f248378a.css",
-    "static/js/main.02bac2de.js"
+    "static/js/main.da676557.js"
   ]
 }
