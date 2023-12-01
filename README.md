@@ -56,8 +56,111 @@ yarn install formik-otp-input
 
 ## Usage 🔨
 
-### Basic example 
-Import `formik-otp-input`  from the package and use them in your component.
+### Step 1: Import Necessary Modules
+Start by importing React, Formik, Yup, and the OtpInput component:
+
+```jsx
+import React from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import OtpInput from 'formik-otp-input';
+```
+
+### Step 2: Define Your OTP Length
+Set the length of your OTP. This will be used in the OtpInput component.
+
+```jsx
+const YOUR_OTP_LENGTH = 6; // Replace this with the length of your OTP
+```
+
+### Step 3:  
+
+(Optional) Define CSS styles for your form elements. Adjust these styles according to your UI requirements.
+
+```jsx
+const formStyle = { /* ... */ };
+const fieldStyle = { /* ... */ };
+const errorTextStyle = { /* ... */ };
+const submitButtonStyle = { /* ... */ };
+```
+
+### Step 4:
+
+Create a functional component for your form. Within this component, you will use Formik's useFormik hook to handle form state and submission.
+
+```jsx
+const OtpForm = () => {
+    // Formik hook
+    const formik = useFormik({
+        initialValues: {
+            otp: '',
+            // ... other form fields if you wish
+        },
+        onSubmit: (values) => {
+            // Handle form submission
+        },
+    });
+
+    // Return the form JSX
+    return (
+        <form style={formStyle} onSubmit={formik.handleSubmit}>
+            {/* OtpInput component and other form elements go here */}
+        </form>
+    );
+};
+```
+
+### Step 5: 
+
+Integrate the OtpInput component into your form. Pass relevant props to customize its behavior and appearance.
+
+```jsx
+<OtpInput
+    length={YOUR_OTP_LENGTH}
+    value={formik.values.otp}
+    inputType={"numeric"}    // Options: numeric, alphabetic, alphanumeric
+    autoFocus={true}         // Auto-focus first digit
+    autoSubmit={true}        // Auto-submit form on full OTP entry
+    onBlur={formik.handleBlur}
+    onChange={formik.handleChange}
+    onFullFill={formik.handleSubmit}
+    setFieldError={formik.setFieldError}
+    setFieldTouched={formik.setFieldTouched}
+    highlightColor={'#4caf50'} // optional
+    // ... other props and style overrides
+    // textColor={'#FFFFFF'}
+    // backgroundColor={'#FFFFFF'}
+    // borderColor={'#FFFFFF'}
+    // ... override any pre-existing styles if required
+    // style={{
+    //     'backgroundColor': '#ffc300'
+    // }}
+/>
+```
+
+### Step 6: Display Form Errors
+
+(Optional) Add a section to display form validation errors related to the OTP field.
+
+```jsx
+{formik.errors.otp && formik.touched.otp && (
+    <div style={errorTextStyle}>{formik.errors.otp}</div>
+)}
+```
+#### Step 7: Add a Submit Button
+
+Include a submit button to allow users to submit the form.
+
+### Step 8: Export the Form Component
+
+Finally, export your OtpForm component.
+
+```jsx
+export default OtpForm;
+```
+
+### Full example
+
 
 ```jsx
 import React from 'react';
