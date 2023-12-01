@@ -1,8 +1,8 @@
 [![npm version](https://img.shields.io/npm/v/formik-otp-input)](https://www.npmjs.com/package/formik-otp-input)
 [![npm downloads](https://img.shields.io/npm/dm/formik-otp-input)](https://www.npmjs.com/package/formik-otp-input)
 [![npm minzip size](https://img.shields.io/bundlephobia/minzip/formik-otp-input)](https://www.npmjs.com/package/formik-otp-input)
-[![npm license](https://img.shields.io/npm/l/formik-otp-input)](https://www.npmjs.com/package/formik-otp-input)
 [![GitHub contributors](https://img.shields.io/github/contributors/pprunty/formik-otp-input)](https://github.com/pprunty/formik-otp-input/graphs/contributors)
+[![npm license](https://img.shields.io/npm/l/formik-otp-input)](https://www.npmjs.com/package/formik-otp-input)
 
 
 Author: [Patrick Prunty](https://pprunty.github.io/pprunty/).
