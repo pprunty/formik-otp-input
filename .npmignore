@@ -4,7 +4,12 @@
 .all-contributorsrc
 .babelrc.json
 .eslintignore
-.eslintrc.json
 .prettierignore
 .prettierrc.json
-webpack.config.js
+demo.gif
+.eslintrc.yml
+formik-otp-input.iml
+rollup.config.js
+tsconfig.json
+.idea
+README.md

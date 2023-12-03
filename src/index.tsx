@@ -60,11 +60,6 @@ interface OtpInputProps {
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  max-width: 90%;
-
-  //.extra-space {
-  //  margin-right: 15px; // Adjust the space as needed
-  //}
 `;
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
