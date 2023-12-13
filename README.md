@@ -147,9 +147,13 @@ Integrate the OtpInput component into your form. Pass relevant props to customiz
     <div style={errorTextStyle}>{formik.errors.otp}</div>
 )}
 ```
-#### Step 7: Add a Submit Button
+### Step 7: Add a Submit Button
 
-Include a submit button to allow users to submit the form.
+(Optional - if `autoSubmit` is disabled) Include a submit button to allow users to submit the form.
+
+```jsx
+<button type="submit" style={submitButtonStyle} >Submit</button>
+```
 
 ### Step 8: Export the Form Component
 
